@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>見つけてもらえるお店づくり ｜ はじめてのMEO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F4EAD4;      /* アズレージョのクリーム地 */
+    --paper:#FCF7EC;
+    --ink:#22303E;        /* 紺色インク（高コントラスト） */
+    --terra:#1C4E8F;      /* アズレージョ・ブルー（主役） */
+    --terra-deep:#143A6B;
+    --mustard:#E3AE2B;    /* 黄金色 */
+    --leaf:#5E8C4A;       /* 葉の緑 */
+    --line:#D9C9A6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:"Zen Maru Gothic",-apple-system,"Hiragino Maru Gothic ProN",sans-serif;
+    color:var(--ink);background:var(--cream);
+    line-height:1.7;-webkit-font-smoothing:antialiased;
+    font-weight:500;display:flex;justify-content:center;
+  }
+  .sheet{
+    width:100%;max-width:460px;min-height:100vh;background:var(--paper);
+    position:relative;overflow:hidden;box-shadow:0 0 60px rgba(42,27,14,.12);
+  }
+  /* header */
+  .head{
+    background:
+      linear-gradient(168deg,rgba(28,78,143,.82) 0%,rgba(20,58,107,.92) 100%),
+      url("azulejo-tile.jpg") center/cover no-repeat;
+    color:#FFF7EC;padding:40px 28px 46px;text-align:center;position:relative;
+    border-bottom-left-radius:46% 26px;border-bottom-right-radius:46% 26px;
+    text-shadow:0 2px 10px rgba(8,28,56,.45);
+  }
+  .badge{display:inline-block;font-size:14px;font-weight:700;letter-spacing:.04em;
+    background:rgba(255,247,236,.2);border:1.5px solid rgba(255,247,236,.6);
+    padding:6px 16px;border-radius:999px;margin-bottom:18px;}
+  .head h1{font-family:"Klee One",serif;font-weight:600;font-size:34px;line-height:1.4;}
+  .head h1 b{font-size:48px;color:var(--mustard);}
+  .head .lead{margin-top:16px;font-size:18px;font-weight:500;line-height:1.7;}
+  .wave{display:block;width:100%;height:18px;margin-top:-1px;}
+
+  .body{padding:32px 24px 0;}
+
+  .hook{
+    background:#FFF;border:2.5px solid var(--mustard);border-radius:20px;
+    padding:20px 22px;text-align:center;font-size:19px;font-weight:700;line-height:1.6;
+  }
+  .hook .em{font-size:40px;display:block;margin-bottom:6px;}
+  .hook span{color:var(--terra-deep);}
+
+  /* ===== 私が目指すこと（ミッション） ===== */
+  .mission{margin:36px 0 0;background:linear-gradient(165deg,var(--terra),var(--terra-deep));
+    color:#FFF7EC;border-radius:22px;padding:28px 24px;text-align:center;}
+  .mission .mk{font-size:15px;font-weight:700;color:#FCE2A0;}
+  .mission p{font-size:17px;font-weight:500;line-height:1.85;margin-top:8px;}
+  .mission p.big{font-family:"Klee One",serif;font-size:22px;font-weight:600;line-height:1.55;margin-top:14px;}
+  .mission p.big em{color:var(--mustard);font-style:normal;}
+
+  .what{margin:36px 0 0;text-align:center;}
+  .what .k{font-size:18px;font-weight:700;color:var(--leaf);}
+  .what h2{font-family:"Klee One",serif;font-weight:600;font-size:28px;line-height:1.45;margin:8px 0 14px;}
+  .what h2 em{color:var(--terra);font-style:normal;}
+  .what p{font-size:18px;font-weight:500;line-height:1.7;}
+  .what p b{background:linear-gradient(transparent 58%,#FBD98F 58%);font-weight:700;}
+
+  .steps{margin:40px 0 0;}
+  .steps h3{text-align:center;font-family:"Klee One",serif;font-size:27px;font-weight:600;}
+  .steps .free{display:block;text-align:center;font-size:17px;font-weight:900;color:#fff;
+    background:var(--leaf);width:fit-content;margin:12px auto 22px;padding:6px 20px;border-radius:999px;}
+  .step{
+    display:flex;gap:16px;align-items:center;background:#FFF;
+    border:2px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:13px;
+  }
+  .step .no{flex:none;width:40px;height:40px;border-radius:50%;background:var(--terra);
+    color:#FFF7EC;font-weight:900;font-size:19px;display:flex;align-items:center;justify-content:center;}
+  .step .ic{font-size:28px;flex:none;}
+  .step .tx{font-size:20px;font-weight:700;line-height:1.4;}
+
+  .result{
+    margin:38px 0 0;text-align:center;background:linear-gradient(165deg,var(--leaf),#395230);
+    color:#fff;border-radius:22px;padding:30px 24px;
+  }
+  .result h3{font-family:"Klee One",serif;font-weight:600;font-size:28px;line-height:1.55;}
+  .result h3 b{color:var(--mustard);font-size:34px;}
+  .result p{margin-top:12px;font-size:17px;font-weight:500;opacity:.95;}
+
+  .cta{padding:34px 24px 40px;}
+  .cta-card{background:#FFF;border:2.5px solid var(--terra);border-radius:22px;
+    padding:28px 24px;text-align:center;box-shadow:0 10px 0 #F1D6B4;}
+  .cta-card .hi{font-family:"Klee One",serif;font-size:26px;font-weight:600;color:var(--terra-deep);line-height:1.4;}
+  .cta-card p{font-size:18px;font-weight:500;line-height:1.75;margin:16px 0 18px;}
+  .cta-card p b{font-weight:700;}
+  .sign{font-size:20px;font-weight:900;color:var(--ink);}
+
+  /* ===== 実践編 ===== */
+  .howto{margin:46px 0 0;}
+  .howto .htitle{text-align:center;font-family:"Klee One",serif;font-size:27px;font-weight:600;line-height:1.4;}
+  .howto .hsub{text-align:center;font-size:16px;font-weight:700;color:var(--leaf);margin-top:6px;}
+  .cap{text-align:center;font-size:13px;color:#9a8463;margin:18px 0 8px;font-weight:700;}
+
+  /* スマホ枠 */
+  .phone{width:250px;margin:8px auto 4px;background:#fff;border:8px solid #22303E;border-radius:30px;overflow:hidden;box-shadow:0 14px 30px rgba(34,48,62,.22);}
+  .phone .bar{background:#f1f3f4;display:flex;align-items:center;gap:8px;padding:9px 11px;}
+  .phone .bar .g{font:700 14px Arial,sans-serif;color:#4285f4;}
+  .phone .bar .q{flex:1;background:#fff;border-radius:999px;font-size:11px;color:#3c4043;padding:5px 10px;border:1px solid #dadce0;}
+
+  /* Googleビジネスカード（お客様目線） */
+  .gcard .photo{height:116px;background:linear-gradient(135deg,#E3AE2B,#1C4E8F);display:flex;align-items:center;justify-content:center;font-size:40px;}
+  .gcard .info{padding:11px 13px;font-family:Arial,"Hiragino Kaku Gothic ProN",sans-serif;}
+  .gcard .name{font-size:16px;font-weight:700;color:#202124;}
+  .gcard .rate{display:flex;align-items:center;gap:5px;font-size:12px;color:#5f6368;margin-top:3px;}
+  .gcard .stars{color:#fbbc04;letter-spacing:1px;}
+  .gcard .open{color:#188038;font-weight:700;}
+  .gcard .meta{font-size:12px;color:#5f6368;margin-top:5px;line-height:1.7;}
+  .gcard .btns{display:flex;gap:7px;margin-top:10px;}
+  .gcard .gbtn{flex:1;border:1px solid #dadce0;border-radius:8px;text-align:center;font-size:11px;color:#1a73e8;padding:6px 0;font-weight:700;}
+
+  /* 編集画面のイメージ */
+  .gedit{font-family:Arial,"Hiragino Kaku Gothic ProN",sans-serif;}
+  .gedit .ehead{background:#1a73e8;color:#fff;padding:11px 14px;font-size:13px;font-weight:700;}
+  .gedit .erow{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid #eee;font-size:12px;color:#3c4043;}
+  .gedit .erow b{color:#202124;}
+  .gedit .erow .v{color:#1a73e8;font-weight:700;}
+  .gedit .ephotos{display:flex;gap:6px;padding:12px 14px;}
+  .gedit .ph{width:46px;height:46px;border-radius:8px;background:#eef0f3;display:flex;align-items:center;justify-content:center;font-size:20px;}
+  .gedit .ph.add{border:2px dashed #1a73e8;color:#1a73e8;font-size:22px;background:#fff;}
+
+  /* 準備ボックス */
+  .prep{background:#FFF6E6;border:2px dashed var(--mustard);border-radius:18px;padding:18px 20px;margin:22px 0 6px;}
+  .prep .pt{font-weight:900;font-size:17px;color:var(--terra-deep);margin-bottom:10px;}
+  .prep ol{margin:0;padding-left:1.2em;font-size:15.5px;line-height:1.9;font-weight:500;}
+  .prep ol b{color:var(--ink);}
+  .prep .note{font-size:13px;color:#9a8463;font-weight:500;}
+
+  /* やり方カード */
+  .hcard{background:#fff;border:2px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:14px;}
+  .hcard .hh{display:flex;align-items:center;gap:12px;margin-bottom:9px;}
+  .hcard .hn{flex:none;width:34px;height:34px;border-radius:50%;background:var(--terra);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:16px;}
+  .hcard .ht{font-size:18px;font-weight:900;color:var(--ink);}
+  .hcard ul{list-style:none;}
+  .hcard li{position:relative;padding:4px 0 4px 22px;font-size:15px;font-weight:500;line-height:1.6;}
+  .hcard li::before{content:"›";position:absolute;left:7px;top:2px;color:var(--terra);font-weight:900;font-size:17px;}
+  .hcard .tip{margin-top:9px;background:#F1F7ED;color:var(--leaf);font-size:13.5px;font-weight:700;padding:8px 11px;border-radius:9px;line-height:1.5;}
+
+  .done{margin:6px 0 0;text-align:center;background:#FFF6E6;border-radius:16px;padding:18px 20px;font-size:16px;font-weight:700;color:var(--terra-deep);line-height:1.7;}
+
+  /* アズレージョ・ボーダー（イラスト/絵画調の画像・全体表示・動きなし） */
+  .az-band{display:block;width:100%;height:auto;}
+  .az-band--flip{transform:rotate(180deg);}
+
+  /* アズレージョ実写タイル（IMG_9605） */
+  .tile-frame{margin:0 auto 16px;width:118px;height:118px;border-radius:20px;overflow:hidden;
+    border:4px solid rgba(255,247,236,.55);box-shadow:0 10px 24px rgba(8,28,56,.4);}
+  .tile-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+  .photo-band{display:block;width:100%;height:84px;object-fit:cover;object-position:center 38%;}
+</style>
+</head>
+<body>
+  <main class="sheet">
+    <img class="az-band" src="azulejo-border.png" alt="">
+    <header class="head">
+      <span class="badge">飲食店・宿泊施設のオーナーさまへ</span>
+      <h1>良いお店なのに<br><b>見つけて</b>もらえない。<br>を、なくしたい。</h1>
+      <p class="lead">むずかしいパソコンの話では、<br>ありません。</p>
+    </header>
+    <svg class="wave" viewBox="0 0 460 18" preserveAspectRatio="none"><path d="M0,9 Q57,18 115,9 T230,9 T345,9 T460,9 V0 H0 Z" fill="#143A6B"/></svg>
+
+    <div class="body">
+      <div class="hook">
+        <span class="em">📱</span>
+        お客様は今、<span>スマホの地図</span>で<br>「近くのお店」を探しています。
+      </div>
+
+      <!-- ===== 私が目指すこと（ミッション） ===== -->
+      <section class="mission">
+        <div class="mk">＼ 私が目指していること ／</div>
+        <p>「MEO対策」というと、<br>検索順位を上げる仕事と思われがち。<br>でも私が目指すのは、少しちがいます。</p>
+        <p class="big">お店の魅力が<em>正しく伝わり</em>、<br>必要としている人に<br><em>見つけてもらえる状態</em>をつくること。</p>
+      </section>
+
+      <section class="what">
+        <div class="k">＼ つまり、すること ／</div>
+        <h2><em>Googleマップ</em>・<em>Instagram</em>・<br>写真・店舗情報を整える</h2>
+        <p>お店の価値が、自然と伝わる導線づくり。<br><b>今あるものを整えるだけ。</p>
+      </section>
+
+      <section class="steps">
+        <h3>まずは、小さな改善から。</h3>
+        <span class="free">ぜんぶ無料でできます ✿</span>
+        <div class="step"><span class="no">1</span><span class="ic">🕒</span><span class="tx">営業時間を正しく載せる</span></div>
+        <div class="step"><span class="no">2</span><span class="ic">📞</span><span class="tx">電話・住所を整える</span></div>
+        <div class="step"><span class="no">3</span><span class="ic">📷</span><span class="tx">写真をふやす</span></div>
+        <div class="step"><span class="no">4</span><span class="ic">🍽️</span><span class="tx">メニューをのせる</span></div>
+        <div class="step"><span class="no">5</span><span class="ic">💬</span><span class="tx">口コミに返信する</span></div>
+        <div class="step"><span class="no">6</span><span class="ic">📸</span><span class="tx">Instagramをつなげる</span></div>
+      </section>
+
+      <section class="howto">
+        <h3 class="htitle">ここからは、<br>実際のやり方 👇</h3>
+        <p class="hsub">むずかしくありません。スマホだけでOK</p>
+
+        <div class="cap">▼ お客様には、こう見えています</div>
+        <div class="phone">
+          <div class="bar"><span class="g">G</span><span class="q">近くの 居酒屋</span></div>
+          <div class="gcard">
+            <div class="photo">🏮</div>
+            <div class="info">
+              <div class="name">居酒屋 ○○</div>
+              <div class="rate"><span class="stars">★★★★☆</span> 4.2（86件）</div>
+              <div class="meta"><span class="open">営業中</span> ・ 〜23:00<br>📍 ○○市△△ 1-2-3 ・ 居酒屋</div>
+              <div class="btns"><div class="gbtn">電話</div><div class="gbtn">経路</div><div class="gbtn">保存</div></div>
+            </div>
+          </div>
+        </div>
+        <p class="hsub" style="margin-top:8px">この画面を、自分で整えていきます。</p>
+
+        <div class="prep">
+          <div class="pt">★ 最初の1回だけ：編集画面を開く</div>
+          <ol>
+            <li>スマホのGoogleに、ご自身のアカウントでログイン</li>
+            <li>検索バーに<b>自分のお店の名前</b>を入れて検索</li>
+            <li>お店の情報の上に出る<b>「プロフィールを編集」</b>をタップ</li>
+          </ol>
+          <p class="note" style="margin-top:8px">※ 出てこない時は「ビジネスプロフィールを管理」から無料登録（私がお手伝いします）</p>
+        </div>
+
+        <div class="cap">▼ 編集画面のイメージ</div>
+        <div class="phone">
+          <div class="gedit">
+            <div class="ehead">← プロフィールを編集</div>
+            <div class="erow"><span><b>営業時間</b></span><span class="v">編集 ›</span></div>
+            <div class="erow"><span>月〜金</span><span>17:00–23:00</span></div>
+            <div class="erow"><span>電話番号</span><span class="v">000-000-0000 ›</span></div>
+            <div class="erow"><span>住所</span><span class="v">○○市△△1-2-3 ›</span></div>
+            <div class="erow"><span><b>写真</b></span><span class="v">追加 ›</span></div>
+            <div class="ephotos"><div class="ph">🍶</div><div class="ph">🍤</div><div class="ph">🏮</div><div class="ph add">＋</div></div>
+          </div>
+        </div>
+        <div class="cap">※ これは操作イメージの図です</div>
+
+        <div class="hcard">
+          <div class="hh"><span class="hn">1</span><span class="ht">🕒 営業時間を載せる</span></div>
+          <ul>
+            <li>編集メニューの「営業時間」を開く</li>
+            <li>曜日ごとに、開店・閉店の時間を入力</li>
+            <li>定休日は「休業」を選んで → 保存</li>
+          </ul>
+          <div class="tip">💡 年末年始など特別な日も入れておくと親切です</div>
+        </div>
+
+        <div class="hcard">
+          <div class="hh"><span class="hn">2</span><span class="ht">📞 電話・住所を整える</span></div>
+          <ul>
+            <li>「電話番号」「住所」をタップして入力・修正</li>
+            <li>地図のピンがずれていたら、正しい場所へ動かす</li>
+            <li>入力できたら → 保存</li>
+          </ul>
+          <div class="tip">💡 番号はタップで発信、住所はタップで道案内につながります</div>
+        </div>
+
+        <div class="hcard">
+          <div class="hh"><span class="hn">3</span><span class="ht">📷 写真をふやす</span></div>
+          <ul>
+            <li>「写真」→ 右上の「＋」をタップ</li>
+            <li>外観・店内・料理を、それぞれ3枚以上</li>
+          </ul>
+          <div class="tip">💡 明るい時間に、まっすぐ撮るときれいに見えます</div>
+        </div>
+
+        <div class="hcard">
+          <div class="hh"><span class="hn">4</span><span class="ht">🍽️ メニューをのせる</span></div>
+          <ul>
+            <li>「メニュー」→「メニューを追加」</li>
+            <li>料理名・値段・写真を入力（看板メニューから）</li>
+          </ul>
+          <div class="tip">💡 全部でなくてOK。人気の5品からで十分です</div>
+        </div>
+
+        <div class="hcard">
+          <div class="hh"><span class="hn">5</span><span class="ht">💬 口コミに返信する</span></div>
+          <ul>
+            <li>「クチコミ」を開く</li>
+            <li>返信したいクチコミの「返信」をタップ</li>
+            <li>「ありがとうございます」を一言そえる</li>
+          </ul>
+          <div class="tip">💡 低い評価にも、丁寧に返すと印象がぐっと良くなります</div>
+        </div>
+
+        <div class="hcard">
+          <div class="hh"><span class="hn">6</span><span class="ht">📸 Instagramをつなげる</span></div>
+          <ul>
+            <li>編集画面の「ウェブサイト」や「SNS」の欄を開く</li>
+            <li>InstagramのプロフィールURLを貼りつける</li>
+            <li>最新の写真・お店の雰囲気が伝わるようにしておく</li>
+          </ul>
+          <div class="tip">💡 地図で見つけた人が「いいお店そう」と確かめる場所になります</div>
+        </div>
+
+        <div class="done">ここまでできたら、<br>もう「見つけてもらえるお店」です！🎉</div>
+      </section>
+
+      <div class="result">
+        <h3>広告費は<b>0円</b>。<br>魅力が伝わり、<br>必要な人に見つけてもらえる。</h3>
+        <p>むずかしい知識も、お金も、いりません。</p>
+      </div>
+    </div>
+
+    <img class="photo-band" src="azulejo-tile.jpg" alt="アズレージョのタイル">
+    <img class="az-band" src="azulejo-border.png" alt="">
+
+    <div class="cta">
+      <div class="cta-card">
+        <div class="hi">一緒に、<br>始めてみませんか😊</div>
+        <p>まずは<b>今のお店の状態を<br>無料でチェック</b>して、<br>結果をお伝えしますね。</p>
+        <p class="sign">一緒に「見つけてもらえる<br>お店づくり」を。</p>
+      </div>
+    </div>
+
+    <img class="az-band az-band--flip" src="azulejo-border.png" alt="">
+  </main>
+</body>
+</html>
